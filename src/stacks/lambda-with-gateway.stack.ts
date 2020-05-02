@@ -1,23 +1,22 @@
 import { App, Stack, StackProps } from '@aws-cdk/core'
 import { LambdaWithGateway } from '../constructs/lambda-with-gateway.construct'
+import { LambdaProps } from '../constructs/lambda.construct'
 
 export interface LambdaWithGatewayStackProps extends StackProps {
-  lambdaCodePath: string;
-  lambdaHandler?: string;
-  lambdaTimeout?: number;
+  lambdaProps: LambdaProps;
 }
 
 export class LambdaWithGatewayStack extends Stack {
   constructor(scope: App, id: string, props: LambdaWithGatewayStackProps) {
-    super(scope, id, props)
+    const { lambdaProps } = props
+    super(scope, id, { lambdaProps, ...props })
 
-    const { lambdaCodePath, lambdaHandler = 'dist/lambda.handler', lambdaTimeout } = props
+    console.log({ props })
+    console.log({ lambdaProps })
+    const test = { lambdaProps, ...props }
+    console.log({ test })
 
-    const lambda = new LambdaWithGateway(this, id, {
-      path: lambdaCodePath,
-      handler: lambdaHandler,
-      timeout: lambdaTimeout,
-    })
+    const lambda = new LambdaWithGateway(this, id, lambdaProps)
 
     console.log('ARN lambda', { lambda: lambda.functionArn })
 

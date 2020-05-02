@@ -8,7 +8,7 @@
 
 // import { Duration, Construct } from '@aws-cdk/core'
 
-// export interface QueueHistoryProps {
+// export interface QueueHistoryProps extends QueueProps {
 //     id? : string
 // }
 

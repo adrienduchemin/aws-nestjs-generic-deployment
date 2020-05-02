@@ -1,15 +1,18 @@
-import { join } from 'path'
 import { expect as expectCDK, SynthUtils, countResources } from '@aws-cdk/assert'
+import { Code } from '@aws-cdk/aws-lambda'
 import { App } from '@aws-cdk/core'
 import { LambdaWithGatewayStack, LambdaWithGatewayStackProps } from '../../src/stacks/lambda-with-gateway.stack'
 
 describe('LambdaWithGatewayStack', () => {
   let stack: LambdaWithGatewayStack
-  const props: LambdaWithGatewayStackProps = {
-    lambdaCodePath: join(__dirname, './lambda'),
-  }
 
   beforeAll(()=> {
+    const props: LambdaWithGatewayStackProps = {
+      lambdaProps: {
+        code: Code.fromInline('lambda'),
+        handler: 'handler',
+      }
+    }
     stack = new LambdaWithGatewayStack(new App(), 'LambdaWithGatewayStack', props)
   })
 

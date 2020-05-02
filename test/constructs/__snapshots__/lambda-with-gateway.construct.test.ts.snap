@@ -30,20 +30,6 @@ Object {
       },
     },
   },
-  "Parameters": Object {
-    "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0ArtifactHash4A934180": Object {
-      "Description": "Artifact hash for asset \\"1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0\\"",
-      "Type": "String",
-    },
-    "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0S3Bucket5EA66AEF": Object {
-      "Description": "S3 bucket for asset \\"1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0\\"",
-      "Type": "String",
-    },
-    "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0S3VersionKeyD171B821": Object {
-      "Description": "S3 key for asset version \\"1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0\\"",
-      "Type": "String",
-    },
-  },
   "Resources": Object {
     "lambda8B5974B5": Object {
       "DependsOn": Array [
@@ -51,44 +37,9 @@ Object {
       ],
       "Properties": Object {
         "Code": Object {
-          "S3Bucket": Object {
-            "Ref": "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0S3Bucket5EA66AEF",
-          },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0S3VersionKeyD171B821",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0S3VersionKeyD171B821",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
+          "ZipFile": "lambda",
         },
-        "Handler": "function.handler",
+        "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
             "lambdaServiceRole494E4CA6",
@@ -96,7 +47,7 @@ Object {
           ],
         },
         "Runtime": "nodejs12.x",
-        "Timeout": 30,
+        "Timeout": 60,
       },
       "Type": "AWS::Lambda::Function",
     },
@@ -303,7 +254,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "lambdagatewayDeployment88A27E7B2deeaa6efadfb776e617e82bf330d8a2": Object {
+    "lambdagatewayDeployment88A27E7Bac4a73df04b25e62af32df7386ea9825": Object {
       "DependsOn": Array [
         "lambdagatewayproxyANY7FFB07AF",
         "lambdagatewayproxyB5A2067F",
@@ -320,7 +271,7 @@ Object {
     "lambdagatewayDeploymentStageprod586EB715": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "lambdagatewayDeployment88A27E7B2deeaa6efadfb776e617e82bf330d8a2",
+          "Ref": "lambdagatewayDeployment88A27E7Bac4a73df04b25e62af32df7386ea9825",
         },
         "RestApiId": Object {
           "Ref": "lambdagateway3457EE9E",
