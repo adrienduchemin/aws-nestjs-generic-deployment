@@ -7,13 +7,12 @@ export class ApiLambdaWithHistoryStack extends ApiLambdaStack {
   constructor(scope: App, id: string, props: ApiLambdaStackProps) {
     super(scope, id, props)
 
-    // coder le fait que la lambda ecrive dans le sqs ..
-    const queue = new Queue(this, id, { fifo: true })
+    const queue = new Queue(this, `${id}-history-queue`, { fifo: true })
     queue.grantSendMessages(this.lambda)
 
     this.lambda.addEnvironment('QUEUE_URL', queue.queueUrl)
 
     // not yet with rds
-    new LambdaHistory(this, id, { queue })
+    new LambdaHistory(this, `${id}-history`, { queue })
   }
 }

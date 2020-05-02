@@ -3,7 +3,7 @@ import { Code } from '@aws-cdk/aws-lambda'
 import { App } from '@aws-cdk/core'
 import { ApiLambdaStack, ApiLambdaStackProps } from '../../src/stacks/api-lambda.stack'
 
-describe('LambdaWithGatewayStack', () => {
+describe('ApiLambdaStack', () => {
   let stack: ApiLambdaStack
 
   beforeAll(()=> {

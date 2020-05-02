@@ -11,8 +11,8 @@ export interface LambdaHistoryProps {
 }
 
 export class LambdaHistory extends Lambda {
-  constructor(parent: Construct, id: string, props: LambdaHistoryProps) {
-    super(parent, `${id}-history`, {
+  constructor(scope: Construct, id: string, props: LambdaHistoryProps) {
+    super(scope, id, {
       code: Code.fromAsset(join(__dirname, './lambda')),
       handler: 'index.handler',
       // environment: {
@@ -22,8 +22,7 @@ export class LambdaHistory extends Lambda {
 
     const { queue } = props
     this.addEventSource(new SqsEventSource(queue))
-
-    const table = new Table(this, 'table-history', {
+    const table = new Table(this, `${id}-table`, {
       partitionKey: { name: 'id', type: AttributeType.STRING }
     })
     table.grantReadWriteData(this)

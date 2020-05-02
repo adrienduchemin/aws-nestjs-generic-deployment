@@ -3,9 +3,9 @@
 exports[`Lambda should create one Lambda with specified runtime 1`] = `
 Object {
   "Resources": Object {
-    "lambda8B5974B5": Object {
+    "Lambdalambda04A7AE7A": Object {
       "DependsOn": Array [
-        "lambdaServiceRole494E4CA6",
+        "LambdalambdaServiceRole9DA151F3",
       ],
       "Properties": Object {
         "Code": Object {
@@ -14,7 +14,7 @@ Object {
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "lambdaServiceRole494E4CA6",
+            "LambdalambdaServiceRole9DA151F3",
             "Arn",
           ],
         },
@@ -23,7 +23,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "lambdaServiceRole494E4CA6": Object {
+    "LambdalambdaServiceRole9DA151F3": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -61,9 +61,9 @@ Object {
 exports[`Lambda should create one Lambda with specified timeout 1`] = `
 Object {
   "Resources": Object {
-    "lambda8B5974B5": Object {
+    "Lambdalambda04A7AE7A": Object {
       "DependsOn": Array [
-        "lambdaServiceRole494E4CA6",
+        "LambdalambdaServiceRole9DA151F3",
       ],
       "Properties": Object {
         "Code": Object {
@@ -72,7 +72,7 @@ Object {
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "lambdaServiceRole494E4CA6",
+            "LambdalambdaServiceRole9DA151F3",
             "Arn",
           ],
         },
@@ -81,7 +81,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "lambdaServiceRole494E4CA6": Object {
+    "LambdalambdaServiceRole9DA151F3": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -119,9 +119,9 @@ Object {
 exports[`Lambda should create one default Lambda 1`] = `
 Object {
   "Resources": Object {
-    "lambda8B5974B5": Object {
+    "Lambdalambda04A7AE7A": Object {
       "DependsOn": Array [
-        "lambdaServiceRole494E4CA6",
+        "LambdalambdaServiceRole9DA151F3",
       ],
       "Properties": Object {
         "Code": Object {
@@ -130,7 +130,7 @@ Object {
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "lambdaServiceRole494E4CA6",
+            "LambdalambdaServiceRole9DA151F3",
             "Arn",
           ],
         },
@@ -139,7 +139,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "lambdaServiceRole494E4CA6": Object {
+    "LambdalambdaServiceRole9DA151F3": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
