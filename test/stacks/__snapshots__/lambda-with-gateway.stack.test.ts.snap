@@ -3,14 +3,14 @@
 exports[`LambdaWithGatewayStack should not have changed 1`] = `
 Object {
   "Outputs": Object {
-    "lambdaLambdaWithGatewayStackgatewayEndpoint90C2BBC4": Object {
+    "lambdaApiLambdaStackgatewayEndpointFE65ED0A": Object {
       "Value": Object {
         "Fn::Join": Array [
           "",
           Array [
             "https://",
             Object {
-              "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+              "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
             },
             ".execute-api.",
             Object {
@@ -22,7 +22,7 @@ Object {
             },
             "/",
             Object {
-              "Ref": "lambdaLambdaWithGatewayStackgatewayDeploymentStageprod2C4B10B2",
+              "Ref": "lambdaApiLambdaStackgatewayDeploymentStageprodC163504D",
             },
             "/",
           ],
@@ -51,85 +51,13 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "lambdaLambdaWithGatewayStackgatewayANYApiPermissionLambdaWithGatewayStacklambdaLambdaWithGatewayStackgateway449A63C3ANY2B4953CE": Object {
+    "lambdaApiLambdaStackgateway0B09E5ED": Object {
       "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "lambda8B5974B5",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
-              },
-              "/",
-              Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayDeploymentStageprod2C4B10B2",
-              },
-              "/*/",
-            ],
-          ],
-        },
+        "Name": "ApiLambdaStack-gateway",
       },
-      "Type": "AWS::Lambda::Permission",
+      "Type": "AWS::ApiGateway::RestApi",
     },
-    "lambdaLambdaWithGatewayStackgatewayANYApiPermissionTestLambdaWithGatewayStacklambdaLambdaWithGatewayStackgateway449A63C3ANY54A47B54": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "lambda8B5974B5",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
-              },
-              "/test-invoke-stage/*/",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "lambdaLambdaWithGatewayStackgatewayANYE02DCF15": Object {
+    "lambdaApiLambdaStackgatewayANY720AA276": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -162,31 +90,109 @@ Object {
         },
         "ResourceId": Object {
           "Fn::GetAtt": Array [
-            "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+            "lambdaApiLambdaStackgateway0B09E5ED",
             "RootResourceId",
           ],
         },
         "RestApiId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+          "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "lambdaLambdaWithGatewayStackgatewayAccount39B9222B": Object {
+    "lambdaApiLambdaStackgatewayANYApiPermissionApiLambdaStacklambdaApiLambdaStackgateway75932681ANYDFEBEAB7": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "lambda8B5974B5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
+              },
+              "/",
+              Object {
+                "Ref": "lambdaApiLambdaStackgatewayDeploymentStageprodC163504D",
+              },
+              "/*/",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "lambdaApiLambdaStackgatewayANYApiPermissionTestApiLambdaStacklambdaApiLambdaStackgateway75932681ANY019AAEE5": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "lambda8B5974B5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
+              },
+              "/test-invoke-stage/*/",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "lambdaApiLambdaStackgatewayAccount8A454B14": Object {
       "DependsOn": Array [
-        "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+        "lambdaApiLambdaStackgateway0B09E5ED",
       ],
       "Properties": Object {
         "CloudWatchRoleArn": Object {
           "Fn::GetAtt": Array [
-            "lambdaLambdaWithGatewayStackgatewayCloudWatchRole13AD78D9",
+            "lambdaApiLambdaStackgatewayCloudWatchRole8541155D",
             "Arn",
           ],
         },
       },
       "Type": "AWS::ApiGateway::Account",
     },
-    "lambdaLambdaWithGatewayStackgatewayCloudWatchRole13AD78D9": Object {
+    "lambdaApiLambdaStackgatewayCloudWatchRole8541155D": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -217,39 +223,48 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "lambdaLambdaWithGatewayStackgatewayDeploymentAFB597702e335da59275178a9e0e37ecec5fc867": Object {
+    "lambdaApiLambdaStackgatewayDeploymentE146A3FD15d53bb6c7211cb68e55ec3f87ce42c0": Object {
       "DependsOn": Array [
-        "lambdaLambdaWithGatewayStackgatewayproxyANYA15F7DAB",
-        "lambdaLambdaWithGatewayStackgatewayproxyF27A8E96",
-        "lambdaLambdaWithGatewayStackgatewayANYE02DCF15",
+        "lambdaApiLambdaStackgatewayproxyANY83F14A45",
+        "lambdaApiLambdaStackgatewayproxy17327CF6",
+        "lambdaApiLambdaStackgatewayANY720AA276",
       ],
       "Properties": Object {
         "Description": "Automatically created by the RestApi construct",
         "RestApiId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+          "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
         },
       },
       "Type": "AWS::ApiGateway::Deployment",
     },
-    "lambdaLambdaWithGatewayStackgatewayDeploymentStageprod2C4B10B2": Object {
+    "lambdaApiLambdaStackgatewayDeploymentStageprodC163504D": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayDeploymentAFB597702e335da59275178a9e0e37ecec5fc867",
+          "Ref": "lambdaApiLambdaStackgatewayDeploymentE146A3FD15d53bb6c7211cb68e55ec3f87ce42c0",
         },
         "RestApiId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+          "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
         },
         "StageName": "prod",
       },
       "Type": "AWS::ApiGateway::Stage",
     },
-    "lambdaLambdaWithGatewayStackgatewayF952C0E2": Object {
+    "lambdaApiLambdaStackgatewayproxy17327CF6": Object {
       "Properties": Object {
-        "Name": "LambdaWithGatewayStack-gateway",
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "lambdaApiLambdaStackgateway0B09E5ED",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "{proxy+}",
+        "RestApiId": Object {
+          "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
+        },
       },
-      "Type": "AWS::ApiGateway::RestApi",
+      "Type": "AWS::ApiGateway::Resource",
     },
-    "lambdaLambdaWithGatewayStackgatewayproxyANYA15F7DAB": Object {
+    "lambdaApiLambdaStackgatewayproxyANY83F14A45": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -281,15 +296,15 @@ Object {
           },
         },
         "ResourceId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayproxyF27A8E96",
+          "Ref": "lambdaApiLambdaStackgatewayproxy17327CF6",
         },
         "RestApiId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+          "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "lambdaLambdaWithGatewayStackgatewayproxyANYApiPermissionLambdaWithGatewayStacklambdaLambdaWithGatewayStackgateway449A63C3ANYproxy665D0BDE": Object {
+    "lambdaApiLambdaStackgatewayproxyANYApiPermissionApiLambdaStacklambdaApiLambdaStackgateway75932681ANYproxy71FF299D": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
@@ -317,11 +332,11 @@ Object {
               },
               ":",
               Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+                "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
               },
               "/",
               Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayDeploymentStageprod2C4B10B2",
+                "Ref": "lambdaApiLambdaStackgatewayDeploymentStageprodC163504D",
               },
               "/*/{proxy+}",
             ],
@@ -330,7 +345,7 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "lambdaLambdaWithGatewayStackgatewayproxyANYApiPermissionTestLambdaWithGatewayStacklambdaLambdaWithGatewayStackgateway449A63C3ANYproxy11592135": Object {
+    "lambdaApiLambdaStackgatewayproxyANYApiPermissionTestApiLambdaStacklambdaApiLambdaStackgateway75932681ANYproxy9A8C8BE8": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
@@ -358,7 +373,7 @@ Object {
               },
               ":",
               Object {
-                "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
+                "Ref": "lambdaApiLambdaStackgateway0B09E5ED",
               },
               "/test-invoke-stage/*/{proxy+}",
             ],
@@ -366,21 +381,6 @@ Object {
         },
       },
       "Type": "AWS::Lambda::Permission",
-    },
-    "lambdaLambdaWithGatewayStackgatewayproxyF27A8E96": Object {
-      "Properties": Object {
-        "ParentId": Object {
-          "Fn::GetAtt": Array [
-            "lambdaLambdaWithGatewayStackgatewayF952C0E2",
-            "RootResourceId",
-          ],
-        },
-        "PathPart": "{proxy+}",
-        "RestApiId": Object {
-          "Ref": "lambdaLambdaWithGatewayStackgatewayF952C0E2",
-        },
-      },
-      "Type": "AWS::ApiGateway::Resource",
     },
     "lambdaServiceRole494E4CA6": Object {
       "Properties": Object {

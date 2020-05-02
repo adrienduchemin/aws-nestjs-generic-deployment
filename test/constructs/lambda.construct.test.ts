@@ -1,7 +1,7 @@
 import { expect as expectCDK, haveResource, SynthUtils, countResources } from '@aws-cdk/assert'
 import { Code, Runtime } from '@aws-cdk/aws-lambda'
 import { Stack, Duration } from '@aws-cdk/core'
-import { Lambda, LambdaProps } from '../../src/constructs/lambda.construct'
+import { Lambda, LambdaProps, LAMBDA_TIMEOUT_ERROR } from '../../src/constructs/lambda.construct'
 
 describe('Lambda', () => {
   let stack: Stack
@@ -39,6 +39,18 @@ describe('Lambda', () => {
     expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
       Timeout: 15,
     }))
+    expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot()
+  })
+
+  it('should throw if the given timeout is > 60 seconds', () => {
+    const overridenProps: LambdaProps =  {
+      ...props,
+      timeout: Duration.seconds(61),
+    }
+    
+    expect(() => {
+      new Lambda(stack, 'Lambda', overridenProps)
+    }).toThrowError(LAMBDA_TIMEOUT_ERROR)
     expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot()
   })
 

@@ -173,3 +173,5 @@ Object {
   },
 }
 `;
+
+exports[`Lambda should throw if the given timeout is > 60 seconds 1`] = `Object {}`;

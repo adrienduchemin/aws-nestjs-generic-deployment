@@ -1,19 +1,19 @@
 import { expect as expectCDK, SynthUtils, countResources } from '@aws-cdk/assert'
 import { Code } from '@aws-cdk/aws-lambda'
 import { App } from '@aws-cdk/core'
-import { LambdaWithGatewayStack, LambdaWithGatewayStackProps } from '../../src/stacks/lambda-with-gateway.stack'
+import { ApiLambdaStack, ApiLambdaStackProps } from '../../src/stacks/api-lambda.stack'
 
 describe('LambdaWithGatewayStack', () => {
-  let stack: LambdaWithGatewayStack
+  let stack: ApiLambdaStack
 
   beforeAll(()=> {
-    const props: LambdaWithGatewayStackProps = {
+    const props: ApiLambdaStackProps = {
       lambdaProps: {
         code: Code.fromInline('lambda'),
         handler: 'handler',
       }
     }
-    stack = new LambdaWithGatewayStack(new App(), 'LambdaWithGatewayStack', props)
+    stack = new ApiLambdaStack(new App(), 'ApiLambdaStack', props)
   })
 
   it('should create one Lambda', () => {
