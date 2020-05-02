@@ -7,18 +7,13 @@ export interface ApiLambdaStackProps extends StackProps {
 }
 
 export class ApiLambdaStack extends Stack {
+  lambda: LambdaWithGateway
+
   constructor(scope: App, id: string, props: ApiLambdaStackProps) {
     const { lambdaProps } = props
     delete props.lambdaProps
     super(scope, id, props)
 
-    const lambda = new LambdaWithGateway(this, id, lambdaProps)
-
-    console.log('ARN lambda', { lambda: lambda.functionArn })
-
-    // queueReader.authorize(write, lambda)
-
-    // should create a RDS and link the lambda as write access to it
-    // creer un autre repo de deploiement
+    this.lambda = new LambdaWithGateway(this, id, lambdaProps)
   }
 }
