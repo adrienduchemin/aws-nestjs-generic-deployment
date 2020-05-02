@@ -1,0 +1,51 @@
+{
+  "name": "aws-nestjs-api",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "watch": "tsc -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
+  },
+  "devDependencies": {
+    "aws-cdk": "1.36.1",
+    "@aws-cdk/assert": "1.36.1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "10.17.5",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.5.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.3.1",
+    "typescript": "~3.7.2",
+    "ts-node": "^8.9.1",
+    "tsconfig-paths": "^3.9.0"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "1.36.1",
+    "@aws-cdk/aws-apigateway": "^1.36.1",
+    "@aws-cdk/aws-lambda": "^1.36.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".test.ts$",
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // "inlineSourceMap": true,
+    // "inlineSources": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "incremental": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "module": "commonjs",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "lib": ["es2019"],
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "strictPropertyInitialization":false,
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
