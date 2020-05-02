@@ -3,7 +3,7 @@ import { Table, AttributeType } from '@aws-cdk/aws-dynamodb'
 import { Code } from '@aws-cdk/aws-lambda'
 import { SqsEventSource } from '@aws-cdk/aws-lambda-event-sources'
 import { Queue } from '@aws-cdk/aws-sqs'
-import { Duration, Construct } from '@aws-cdk/core'
+import { Construct } from '@aws-cdk/core'
 import { Lambda } from '../lambda.construct'
 
 export interface LambdaHistoryProps {
@@ -12,7 +12,7 @@ export interface LambdaHistoryProps {
 
 export class LambdaHistory extends Lambda {
   constructor(parent: Construct, id: string, props: LambdaHistoryProps) {
-    super(parent, id, {
+    super(parent, `${id}-history`, {
       code: Code.fromAsset(join(__dirname, './lambda')),
       handler: 'index.handler',
       // environment: {

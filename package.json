@@ -1,7 +1,6 @@
 {
-  "name": "aws-nestjs-api",
+  "name": "aws-nestjs-generic-deployment",
   "version": "0.0.1",
-  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
