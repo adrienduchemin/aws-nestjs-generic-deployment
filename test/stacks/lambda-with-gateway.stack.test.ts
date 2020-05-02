@@ -17,7 +17,7 @@ describe('LambdaWithGatewayStack', () => {
     expectCDK(stack).to(countResources("AWS::Lambda::Function", 1))
   })
 
-  it('should create one API GATEWAY', () => {
+  it('should create one Api Gateway', () => {
     expectCDK(stack).to(countResources("AWS::ApiGateway::RestApi", 1))
   })
 

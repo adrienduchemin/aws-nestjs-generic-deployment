@@ -1,4 +1,3 @@
-import { join } from 'path'
 import { App, Stack, StackProps } from '@aws-cdk/core'
 import { LambdaWithGateway } from '../constructs/lambda-with-gateway.construct'
 

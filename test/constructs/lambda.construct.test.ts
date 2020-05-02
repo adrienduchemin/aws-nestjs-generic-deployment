@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { expect as expectCDK, haveResource, SynthUtils } from '@aws-cdk/assert'
+import { expect as expectCDK, haveResource, SynthUtils, countResources } from '@aws-cdk/assert'
 import { Stack } from '@aws-cdk/core'
 import { Lambda, LambdaProps } from '../../src/constructs/lambda.construct'
 
@@ -14,9 +14,10 @@ describe('Lambda', () => {
     stack = new Stack()
   })
 
-  it('should create a default lambda', () => {
+  it('should create one default Lambda', () => {
     new Lambda(stack, 'Lambda', props)
 
+    expectCDK(stack).to(countResources("AWS::Lambda::Function", 1))
     expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
       Handler: "function.handler",
       Timeout: 30,
@@ -25,12 +26,14 @@ describe('Lambda', () => {
     expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot()
   })
 
-  it('should create a lambda with specified timeout', () => {
+  it('should create one Lambda with specified timeout', () => {
     const overridenProps: LambdaProps =  {
       ...props,
       timeout: 15,
     }
     new Lambda(stack, 'Lambda', overridenProps)
+    
+    expectCDK(stack).to(countResources("AWS::Lambda::Function", 1))
     expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
       Timeout: 15,
     }))
