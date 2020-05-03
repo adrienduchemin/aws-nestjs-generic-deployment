@@ -14,7 +14,7 @@ export interface HistoryProps {
 export class History extends Construct {
   constructor(scope: Construct, id: string, props: HistoryProps) {
     const { queue, tableProps } = props
-    const { tableName = `${id}-history-table`, partitionKey = { name: 'id', type: AttributeType.STRING } } = tableProps ? tableProps : {}
+    const { tableName = `${id}HistoryTable`, partitionKey = { name: 'id', type: AttributeType.STRING } } = tableProps ? tableProps : {}
 
     super(scope, id)
 

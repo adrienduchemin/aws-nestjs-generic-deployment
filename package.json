@@ -7,6 +7,7 @@
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "watch": "tsc -w -p tsconfig.build.json",
     "test": "jest",
+    "test:update": "jest --updateSnapshot",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
