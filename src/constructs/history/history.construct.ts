@@ -6,13 +6,13 @@ import { Queue } from '@aws-cdk/aws-sqs'
 import { Construct } from '@aws-cdk/core'
 import { Lambda } from '../lambda.construct'
 
-export interface HistoryProps {
+export interface IHistoryProps {
   queue: Queue,
   tableProps?: TableProps
 }
 
 export class History extends Construct {
-  constructor(scope: Construct, id: string, props: HistoryProps) {
+  constructor(scope: Construct, id: string, props: IHistoryProps) {
     const { queue, tableProps } = props
     const { tableName = `${id}HistoryTable`, partitionKey = { name: 'id', type: AttributeType.STRING } } = tableProps ? tableProps : {}
 

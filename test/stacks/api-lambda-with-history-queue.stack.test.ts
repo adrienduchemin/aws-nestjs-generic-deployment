@@ -1,20 +1,18 @@
 import { expect as expectCDK, SynthUtils, countResources, haveResource } from '@aws-cdk/assert'
 import { Code } from '@aws-cdk/aws-lambda'
 import { App } from '@aws-cdk/core'
-import { ApiLambdaWithHistoryStack } from '../../src/stacks/api-lambda-with-history.stack'
-import { IApiLambdaStackProps } from '../../src/stacks/api-lambda.stack'
+import { ApiLambdaWithHistoryQueueStack } from '../../src/stacks/api-lambda-with-history-queue.stack'
 
 describe('ApiLambdaWithHistoryStack', () => {
-  let stack: ApiLambdaWithHistoryStack
+  let stack: ApiLambdaWithHistoryQueueStack
 
   beforeAll(()=> {
-    const props: IApiLambdaStackProps = {
+    stack = new ApiLambdaWithHistoryQueueStack(new App(), 'ApiLambdaWithHistoryStack', {
       lambdaProps: {
         code: Code.fromInline('lambda'),
         handler: 'handler',
       }
-    }
-    stack = new ApiLambdaWithHistoryStack(new App(), 'ApiLambdaWithHistoryStack', props)
+    })
   })
 
   it('should create two Lambda', () => {

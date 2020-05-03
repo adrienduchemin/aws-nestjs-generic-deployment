@@ -1,26 +1,25 @@
 import { expect as expectCDK, SynthUtils, countResources, haveResource } from '@aws-cdk/assert'
 import { Code } from '@aws-cdk/aws-lambda'
 import { Stack } from '@aws-cdk/core'
-import { ApiLambda, API_LAMBDA_TIMEOUT, ApiLambdaProps } from '../../src/constructs/api-lambda.construct'
+import { ApiLambda, API_LAMBDA_TIMEOUT } from '../../src/constructs/api-lambda.construct'
 
 describe('ApiLambda', () => {
   let stack: Stack
 
   beforeAll(()=> {
-    const props: ApiLambdaProps = {
+    stack = new Stack()
+    new ApiLambda(stack, 'ApiLambda', {
       lambdaProps: {
         code: Code.fromInline('lambda'),
         handler: 'handler',
       }
-    }
-    stack = new Stack()
-    new ApiLambda(stack, 'ApiLambda', props)
+    })
   })
 
   it('should create one Lambda', () => {
     expectCDK(stack).to(countResources("AWS::Lambda::Function", 1))
     expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
-      Timeout: API_LAMBDA_TIMEOUT,
+      Timeout: API_LAMBDA_TIMEOUT.toSeconds(),
     }))
   })
 

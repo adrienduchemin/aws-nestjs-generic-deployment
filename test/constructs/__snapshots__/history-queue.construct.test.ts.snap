@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History should not have changed 1`] = `
+Object {
+  "Parameters": Object {
+    "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05ArtifactHash6241674D": Object {
+      "Description": "Artifact hash for asset \\"6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05\\"",
+      "Type": "String",
+    },
+    "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05S3Bucket3765D8AA": Object {
+      "Description": "S3 bucket for asset \\"6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05\\"",
+      "Type": "String",
+    },
+    "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05S3VersionKey59FE3835": Object {
+      "Description": "S3 key for asset version \\"6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "HistoryQueueHistoryQueuefifo9642A4FD": Object {
+      "Properties": Object {
+        "FifoQueue": true,
+        "QueueName": "HistoryQueueHistoryQueue.fifo",
+      },
+      "Type": "AWS::SQS::Queue",
+    },
+    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaCD0CD128": Object {
+      "DependsOn": Array [
+        "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRoleDefaultPolicyC3E68B31",
+        "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRole8684B095",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05S3Bucket3765D8AA",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05S3VersionKey59FE3835",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters6e299eb822cce449ea66aea74a07269cec00aa22054e7820f61d319cb0031e05S3VersionKey59FE3835",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "TABLE_NAME": Object {
+              "Ref": "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryTableDEE80027",
+            },
+          },
+        },
+        "FunctionName": "HistoryQueueHistoryLambda",
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRole8684B095",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 30,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRole8684B095": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRoleDefaultPolicyC3E68B31": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "HistoryQueueHistoryQueuefifo9642A4FD",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryTableDEE80027",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRoleDefaultPolicyC3E68B31",
+        "Roles": Array [
+          Object {
+            "Ref": "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaServiceRole8684B095",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaSqsEventSourceHistoryQueueHistoryQueuefifoCA8764EA": Object {
+      "Properties": Object {
+        "EventSourceArn": Object {
+          "Fn::GetAtt": Array [
+            "HistoryQueueHistoryQueuefifo9642A4FD",
+            "Arn",
+          ],
+        },
+        "FunctionName": Object {
+          "Ref": "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryLambdaCD0CD128",
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "HistoryQueueHistoryQueuefifoHistoryQueueHistoryQueueHistoryTableDEE80027": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": Object {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "TableName": "HistoryQueueHistoryTable",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;

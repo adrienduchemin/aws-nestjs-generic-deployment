@@ -3,14 +3,14 @@
 exports[`ApiLambdaWithHistoryStack should not have changed 1`] = `
 Object {
   "Outputs": Object {
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayEndpoint0BA84C80": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiEndpoint30678BB8": Object {
       "Value": Object {
         "Fn::Join": Array [
           "",
           Array [
             "https://",
             Object {
-              "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+              "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
             },
             ".execute-api.",
             Object {
@@ -22,7 +22,7 @@ Object {
             },
             "/",
             Object {
-              "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeploymentStageprod3377DE16",
+              "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentStageprod35E3E8ED",
             },
             "/",
           ],
@@ -45,33 +45,10 @@ Object {
     },
   },
   "Resources": Object {
-    "ApiLambdaWithHistoryStackhistorylambdaApiLambdaWithHistoryStackhistorytableC2AB669B": Object {
-      "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "AttributeDefinitions": Array [
-          Object {
-            "AttributeName": "id",
-            "AttributeType": "S",
-          },
-        ],
-        "KeySchema": Array [
-          Object {
-            "AttributeName": "id",
-            "KeyType": "HASH",
-          },
-        ],
-        "ProvisionedThroughput": Object {
-          "ReadCapacityUnits": 5,
-          "WriteCapacityUnits": 5,
-        },
-      },
-      "Type": "AWS::DynamoDB::Table",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "ApiLambdaWithHistoryStackhistorylambdaC4FCCDD6": Object {
+    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambda8E3C3EC2": Object {
       "DependsOn": Array [
-        "ApiLambdaWithHistoryStackhistorylambdaServiceRoleDefaultPolicy3A9BAFDF",
-        "ApiLambdaWithHistoryStackhistorylambdaServiceRole1C735BFD",
+        "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRoleDefaultPolicy9D3CDB44",
+        "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRole6AE1221A",
       ],
       "Properties": Object {
         "Code": Object {
@@ -115,14 +92,15 @@ Object {
         "Environment": Object {
           "Variables": Object {
             "TABLE_NAME": Object {
-              "Ref": "ApiLambdaWithHistoryStackhistorylambdaApiLambdaWithHistoryStackhistorytableC2AB669B",
+              "Ref": "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryTable86C1BAB5",
             },
           },
         },
+        "FunctionName": "ApiLambdaWithHistoryStackHistoryLambda",
         "Handler": "index.handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStackhistorylambdaServiceRole1C735BFD",
+            "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRole6AE1221A",
             "Arn",
           ],
         },
@@ -131,7 +109,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ApiLambdaWithHistoryStackhistorylambdaServiceRole1C735BFD": Object {
+    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRole6AE1221A": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -162,7 +140,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "ApiLambdaWithHistoryStackhistorylambdaServiceRoleDefaultPolicy3A9BAFDF": Object {
+    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRoleDefaultPolicy9D3CDB44": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -177,7 +155,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "ApiLambdaWithHistoryStackhistoryqueue35393AC6",
+                  "ApiLambdaWithHistoryStackHistoryQueuefifoC33E3D0B",
                   "Arn",
                 ],
               },
@@ -199,7 +177,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "ApiLambdaWithHistoryStackhistorylambdaApiLambdaWithHistoryStackhistorytableC2AB669B",
+                    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryTable86C1BAB5",
                     "Arn",
                   ],
                 },
@@ -211,36 +189,96 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "ApiLambdaWithHistoryStackhistorylambdaServiceRoleDefaultPolicy3A9BAFDF",
+        "PolicyName": "aWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRoleDefaultPolicy9D3CDB44",
         "Roles": Array [
           Object {
-            "Ref": "ApiLambdaWithHistoryStackhistorylambdaServiceRole1C735BFD",
+            "Ref": "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaServiceRole6AE1221A",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "ApiLambdaWithHistoryStackhistorylambdaSqsEventSourceApiLambdaWithHistoryStackApiLambdaWithHistoryStackhistoryqueueE1E540C09F17A212": Object {
+    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambdaSqsEventSourceApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryQueuefifo9D7A44B7E410628C": Object {
       "Properties": Object {
         "EventSourceArn": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStackhistoryqueue35393AC6",
+            "ApiLambdaWithHistoryStackHistoryQueuefifoC33E3D0B",
             "Arn",
           ],
         },
         "FunctionName": Object {
-          "Ref": "ApiLambdaWithHistoryStackhistorylambdaC4FCCDD6",
+          "Ref": "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryLambda8E3C3EC2",
         },
       },
       "Type": "AWS::Lambda::EventSourceMapping",
     },
-    "ApiLambdaWithHistoryStackhistoryqueue35393AC6": Object {
+    "ApiLambdaWithHistoryStackHistoryQueuefifoApiLambdaWithHistoryStackApiLambdaWithHistoryStackHistoryTable86C1BAB5": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": Object {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "TableName": "ApiLambdaWithHistoryStackHistoryTable",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiLambdaWithHistoryStackHistoryQueuefifoC33E3D0B": Object {
       "Properties": Object {
         "FifoQueue": true,
+        "QueueName": "ApiLambdaWithHistoryStackHistoryQueue.fifo",
       },
       "Type": "AWS::SQS::Queue",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayANY5C0BCA65": Object {
+    "ApiLambdaWithHistoryStackLambda2CB65481": Object {
+      "DependsOn": Array [
+        "ApiLambdaWithHistoryStackLambdaServiceRoleDefaultPolicyF04B8A12",
+        "ApiLambdaWithHistoryStackLambdaServiceRole20D45CC2",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "lambda",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "QUEUE_URL": Object {
+              "Ref": "ApiLambdaWithHistoryStackHistoryQueuefifoC33E3D0B",
+            },
+          },
+        },
+        "FunctionName": "ApiLambdaWithHistoryStackLambda",
+        "Handler": "handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaWithHistoryStackLambdaServiceRole20D45CC2",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911": Object {
+      "Properties": Object {
+        "Name": "ApiLambdaWithHistoryStackRestApi",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiANY5CF59881": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -262,7 +300,7 @@ Object {
                 ":lambda:path/2015-03-31/functions/",
                 Object {
                   "Fn::GetAtt": Array [
-                    "ApiLambdaWithHistoryStacklambdaF29451C2",
+                    "ApiLambdaWithHistoryStackLambda2CB65481",
                     "Arn",
                   ],
                 },
@@ -273,22 +311,22 @@ Object {
         },
         "ResourceId": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+            "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
             "RootResourceId",
           ],
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayANYApiPermissionApiLambdaWithHistoryStackApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayB9E6DCDEANYCF299DF4": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiANYApiPermissionApiLambdaWithHistoryStackApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiA20D9C77ANY090BB308": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaF29451C2",
+            "ApiLambdaWithHistoryStackLambda2CB65481",
             "Arn",
           ],
         },
@@ -311,11 +349,11 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
               },
               "/",
               Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeploymentStageprod3377DE16",
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentStageprod35E3E8ED",
               },
               "/*/",
             ],
@@ -324,12 +362,12 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayANYApiPermissionTestApiLambdaWithHistoryStackApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayB9E6DCDEANY3A8FEB31": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiANYApiPermissionTestApiLambdaWithHistoryStackApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiA20D9C77ANYAADDC376": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaF29451C2",
+            "ApiLambdaWithHistoryStackLambda2CB65481",
             "Arn",
           ],
         },
@@ -352,7 +390,7 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
               },
               "/test-invoke-stage/*/",
             ],
@@ -361,21 +399,21 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayAccount6C7C2349": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiAccount0BBE79D3": Object {
       "DependsOn": Array [
-        "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+        "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
       ],
       "Properties": Object {
         "CloudWatchRoleArn": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayCloudWatchRole809CE127",
+            "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiCloudWatchRoleE6F2A7B6",
             "Arn",
           ],
         },
       },
       "Type": "AWS::ApiGateway::Account",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayCloudWatchRole809CE127": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiCloudWatchRoleE6F2A7B6": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -406,132 +444,48 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeployment4A222C2Ac7510abd72a3eeefeb1ba0b9ab03ce84": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentFB1A0E0383a2f8e5d6da5a2e94099d4832e453f2": Object {
       "DependsOn": Array [
-        "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxyANYC440A3CE",
-        "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxy2DBF0196",
-        "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayANY5C0BCA65",
+        "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyANY84846DD1",
+        "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyAC2794C8",
+        "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiANY5CF59881",
       ],
       "Properties": Object {
         "Description": "Automatically created by the RestApi construct",
         "RestApiId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
         },
       },
       "Type": "AWS::ApiGateway::Deployment",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeploymentStageprod3377DE16": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentStageprod35E3E8ED": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeployment4A222C2Ac7510abd72a3eeefeb1ba0b9ab03ce84",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentFB1A0E0383a2f8e5d6da5a2e94099d4832e453f2",
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
         },
         "StageName": "prod",
       },
       "Type": "AWS::ApiGateway::Stage",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61": Object {
-      "Properties": Object {
-        "Name": "ApiLambdaWithHistoryStack-gateway",
-      },
-      "Type": "AWS::ApiGateway::RestApi",
-    },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxy2DBF0196": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyAC2794C8": Object {
       "Properties": Object {
         "ParentId": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+            "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
             "RootResourceId",
           ],
         },
         "PathPart": "{proxy+}",
         "RestApiId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
         },
       },
       "Type": "AWS::ApiGateway::Resource",
     },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxyANYApiPermissionApiLambdaWithHistoryStackApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayB9E6DCDEANYproxyE349669E": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaF29451C2",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
-              },
-              "/",
-              Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayDeploymentStageprod3377DE16",
-              },
-              "/*/{proxy+}",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxyANYApiPermissionTestApiLambdaWithHistoryStackApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayB9E6DCDEANYproxyA4752ED3": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaF29451C2",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
-              },
-              "/test-invoke-stage/*/{proxy+}",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxyANYC440A3CE": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyANY84846DD1": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -553,7 +507,7 @@ Object {
                 ":lambda:path/2015-03-31/functions/",
                 Object {
                   "Fn::GetAtt": Array [
-                    "ApiLambdaWithHistoryStacklambdaF29451C2",
+                    "ApiLambdaWithHistoryStackLambda2CB65481",
                     "Arn",
                   ],
                 },
@@ -563,43 +517,93 @@ Object {
           },
         },
         "ResourceId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayproxy2DBF0196",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyAC2794C8",
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaWithHistoryStacklambdaApiLambdaWithHistoryStackgatewayF0D5AB61",
+          "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "ApiLambdaWithHistoryStacklambdaF29451C2": Object {
-      "DependsOn": Array [
-        "ApiLambdaWithHistoryStacklambdaServiceRoleDefaultPolicy13F76F1D",
-        "ApiLambdaWithHistoryStacklambdaServiceRole441DE69C",
-      ],
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyANYApiPermissionApiLambdaWithHistoryStackApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiA20D9C77ANYproxy4156CEBA": Object {
       "Properties": Object {
-        "Code": Object {
-          "ZipFile": "lambda",
-        },
-        "Environment": Object {
-          "Variables": Object {
-            "QUEUE_URL": Object {
-              "Ref": "ApiLambdaWithHistoryStackhistoryqueue35393AC6",
-            },
-          },
-        },
-        "Handler": "handler",
-        "Role": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaWithHistoryStacklambdaServiceRole441DE69C",
+            "ApiLambdaWithHistoryStackLambda2CB65481",
             "Arn",
           ],
         },
-        "Runtime": "nodejs12.x",
-        "Timeout": 60,
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
+              },
+              "/",
+              Object {
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiDeploymentStageprod35E3E8ED",
+              },
+              "/*/{proxy+}",
+            ],
+          ],
+        },
       },
-      "Type": "AWS::Lambda::Function",
+      "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaWithHistoryStacklambdaServiceRole441DE69C": Object {
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiproxyANYApiPermissionTestApiLambdaWithHistoryStackApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApiA20D9C77ANYproxy8618A2AB": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaWithHistoryStackLambda2CB65481",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911",
+              },
+              "/test-invoke-stage/*/{proxy+}",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "ApiLambdaWithHistoryStackLambdaServiceRole20D45CC2": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -630,7 +634,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "ApiLambdaWithHistoryStacklambdaServiceRoleDefaultPolicy13F76F1D": Object {
+    "ApiLambdaWithHistoryStackLambdaServiceRoleDefaultPolicyF04B8A12": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -643,7 +647,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "ApiLambdaWithHistoryStackhistoryqueue35393AC6",
+                  "ApiLambdaWithHistoryStackHistoryQueuefifoC33E3D0B",
                   "Arn",
                 ],
               },
@@ -651,10 +655,10 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "ApiLambdaWithHistoryStacklambdaServiceRoleDefaultPolicy13F76F1D",
+        "PolicyName": "ApiLambdaWithHistoryStackLambdaServiceRoleDefaultPolicyF04B8A12",
         "Roles": Array [
           Object {
-            "Ref": "ApiLambdaWithHistoryStacklambdaServiceRole441DE69C",
+            "Ref": "ApiLambdaWithHistoryStackLambdaServiceRole20D45CC2",
           },
         ],
       },

@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApiLambdaStack should not have changed 1`] = `
+exports[`Api should create one default Api 1`] = `
 Object {
   "Outputs": Object {
-    "ApiLambdaStackLambdaApiLambdaStackRestApiEndpointB1631A72": Object {
+    "ApiRestApiEndpoint855DC26C": Object {
       "Value": Object {
         "Fn::Join": Array [
           "",
           Array [
             "https://",
             Object {
-              "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+              "Ref": "ApiRestApiC7984005",
             },
             ".execute-api.",
             Object {
@@ -22,7 +22,7 @@ Object {
             },
             "/",
             Object {
-              "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentStageprodB52A1F58",
+              "Ref": "ApiRestApiDeploymentStageprod71DD819D",
             },
             "/",
           ],
@@ -31,34 +31,7 @@ Object {
     },
   },
   "Resources": Object {
-    "ApiLambdaStackLambda78623D88": Object {
-      "DependsOn": Array [
-        "ApiLambdaStackLambdaServiceRole29C5619E",
-      ],
-      "Properties": Object {
-        "Code": Object {
-          "ZipFile": "lambda",
-        },
-        "FunctionName": "ApiLambdaStackLambda",
-        "Handler": "handler",
-        "Role": Object {
-          "Fn::GetAtt": Array [
-            "ApiLambdaStackLambdaServiceRole29C5619E",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs12.x",
-        "Timeout": 60,
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4": Object {
-      "Properties": Object {
-        "Name": "ApiLambdaStackRestApi",
-      },
-      "Type": "AWS::ApiGateway::RestApi",
-    },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiANY4B6E1775": Object {
+    "ApiRestApiANY8CC70CDB": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -80,7 +53,7 @@ Object {
                 ":lambda:path/2015-03-31/functions/",
                 Object {
                   "Fn::GetAtt": Array [
-                    "ApiLambdaStackLambda78623D88",
+                    "LambdaLambda764FC51E",
                     "Arn",
                   ],
                 },
@@ -91,22 +64,22 @@ Object {
         },
         "ResourceId": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+            "ApiRestApiC7984005",
             "RootResourceId",
           ],
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+          "Ref": "ApiRestApiC7984005",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiANYApiPermissionApiLambdaStackApiLambdaStackLambdaApiLambdaStackRestApiA3584E23ANY22DEDB35": Object {
+    "ApiRestApiANYApiPermissionApiRestApiANYDD83496C": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambda78623D88",
+            "LambdaLambda764FC51E",
             "Arn",
           ],
         },
@@ -129,11 +102,11 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+                "Ref": "ApiRestApiC7984005",
               },
               "/",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentStageprodB52A1F58",
+                "Ref": "ApiRestApiDeploymentStageprod71DD819D",
               },
               "/*/",
             ],
@@ -142,12 +115,12 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiANYApiPermissionTestApiLambdaStackApiLambdaStackLambdaApiLambdaStackRestApiA3584E23ANY8A5F55BA": Object {
+    "ApiRestApiANYApiPermissionTestApiRestApiANY51E2113B": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambda78623D88",
+            "LambdaLambda764FC51E",
             "Arn",
           ],
         },
@@ -170,7 +143,7 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+                "Ref": "ApiRestApiC7984005",
               },
               "/test-invoke-stage/*/",
             ],
@@ -179,21 +152,27 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiAccountF0DDE2B7": Object {
+    "ApiRestApiAccount82932634": Object {
       "DependsOn": Array [
-        "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+        "ApiRestApiC7984005",
       ],
       "Properties": Object {
         "CloudWatchRoleArn": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambdaApiLambdaStackRestApiCloudWatchRoleB3344189",
+            "ApiRestApiCloudWatchRole3864A579",
             "Arn",
           ],
         },
       },
       "Type": "AWS::ApiGateway::Account",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiCloudWatchRoleB3344189": Object {
+    "ApiRestApiC7984005": Object {
+      "Properties": Object {
+        "Name": "ApiRestApi",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "ApiRestApiCloudWatchRole3864A579": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -224,33 +203,48 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentF545FAEDbd212b8b04be689a445f877db702b0d3": Object {
+    "ApiRestApiDeploymentB7CF0DF59512db6caad199d9ffe9471da2c7a535": Object {
       "DependsOn": Array [
-        "ApiLambdaStackLambdaApiLambdaStackRestApiproxyANY3330E380",
-        "ApiLambdaStackLambdaApiLambdaStackRestApiproxyE132521F",
-        "ApiLambdaStackLambdaApiLambdaStackRestApiANY4B6E1775",
+        "ApiRestApiproxyANY18A85ECB",
+        "ApiRestApiproxy8CE71C52",
+        "ApiRestApiANY8CC70CDB",
       ],
       "Properties": Object {
         "Description": "Automatically created by the RestApi construct",
         "RestApiId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+          "Ref": "ApiRestApiC7984005",
         },
       },
       "Type": "AWS::ApiGateway::Deployment",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentStageprodB52A1F58": Object {
+    "ApiRestApiDeploymentStageprod71DD819D": Object {
       "Properties": Object {
         "DeploymentId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentF545FAEDbd212b8b04be689a445f877db702b0d3",
+          "Ref": "ApiRestApiDeploymentB7CF0DF59512db6caad199d9ffe9471da2c7a535",
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+          "Ref": "ApiRestApiC7984005",
         },
         "StageName": "prod",
       },
       "Type": "AWS::ApiGateway::Stage",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiproxyANY3330E380": Object {
+    "ApiRestApiproxy8CE71C52": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "ApiRestApiC7984005",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "{proxy+}",
+        "RestApiId": Object {
+          "Ref": "ApiRestApiC7984005",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "ApiRestApiproxyANY18A85ECB": Object {
       "Properties": Object {
         "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
@@ -272,7 +266,7 @@ Object {
                 ":lambda:path/2015-03-31/functions/",
                 Object {
                   "Fn::GetAtt": Array [
-                    "ApiLambdaStackLambda78623D88",
+                    "LambdaLambda764FC51E",
                     "Arn",
                   ],
                 },
@@ -282,20 +276,20 @@ Object {
           },
         },
         "ResourceId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApiproxyE132521F",
+          "Ref": "ApiRestApiproxy8CE71C52",
         },
         "RestApiId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+          "Ref": "ApiRestApiC7984005",
         },
       },
       "Type": "AWS::ApiGateway::Method",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiproxyANYApiPermissionApiLambdaStackApiLambdaStackLambdaApiLambdaStackRestApiA3584E23ANYproxy6F74C4BC": Object {
+    "ApiRestApiproxyANYApiPermissionApiRestApiANYproxy9C7C448F": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambda78623D88",
+            "LambdaLambda764FC51E",
             "Arn",
           ],
         },
@@ -318,11 +312,11 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+                "Ref": "ApiRestApiC7984005",
               },
               "/",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApiDeploymentStageprodB52A1F58",
+                "Ref": "ApiRestApiDeploymentStageprod71DD819D",
               },
               "/*/{proxy+}",
             ],
@@ -331,12 +325,12 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiproxyANYApiPermissionTestApiLambdaStackApiLambdaStackLambdaApiLambdaStackRestApiA3584E23ANYproxyE4822CC7": Object {
+    "ApiRestApiproxyANYApiPermissionTestApiRestApiANYproxy70982D2F": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambda78623D88",
+            "LambdaLambda764FC51E",
             "Arn",
           ],
         },
@@ -359,7 +353,7 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
+                "Ref": "ApiRestApiC7984005",
               },
               "/test-invoke-stage/*/{proxy+}",
             ],
@@ -368,22 +362,28 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ApiLambdaStackLambdaApiLambdaStackRestApiproxyE132521F": Object {
+    "LambdaLambda764FC51E": Object {
+      "DependsOn": Array [
+        "LambdaLambdaServiceRole7D5BE2AE",
+      ],
       "Properties": Object {
-        "ParentId": Object {
+        "Code": Object {
+          "ZipFile": "lambda",
+        },
+        "FunctionName": "LambdaLambda",
+        "Handler": "handler",
+        "Role": Object {
           "Fn::GetAtt": Array [
-            "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
-            "RootResourceId",
+            "LambdaLambdaServiceRole7D5BE2AE",
+            "Arn",
           ],
         },
-        "PathPart": "{proxy+}",
-        "RestApiId": Object {
-          "Ref": "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4",
-        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 30,
       },
-      "Type": "AWS::ApiGateway::Resource",
+      "Type": "AWS::Lambda::Function",
     },
-    "ApiLambdaStackLambdaServiceRole29C5619E": Object {
+    "LambdaLambdaServiceRole7D5BE2AE": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [

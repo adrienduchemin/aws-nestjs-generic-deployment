@@ -4,13 +4,13 @@ import { Lambda } from './lambda.construct'
 
 export type ILambdaRestApiProps = Omit<LambdaRestApiProps, 'handler'>
 
-export interface ApiProps {
+export interface IApiProps {
   apiProps?: ILambdaRestApiProps
   lambda: Lambda
 }
 
 export class Api extends LambdaRestApi {
-  constructor(scope: Construct, id: string, props: ApiProps) {
+  constructor(scope: Construct, id: string, props: IApiProps) {
     const { lambda, apiProps } = props
     const { restApiName = `${id}RestApi` } = apiProps ? apiProps : {}
 

@@ -3,18 +3,19 @@
 exports[`Lambda should create one Lambda with specified runtime 1`] = `
 Object {
   "Resources": Object {
-    "Lambdalambda04A7AE7A": Object {
+    "LambdaLambda764FC51E": Object {
       "DependsOn": Array [
-        "LambdalambdaServiceRole9DA151F3",
+        "LambdaLambdaServiceRole7D5BE2AE",
       ],
       "Properties": Object {
         "Code": Object {
           "ZipFile": "lambda",
         },
+        "FunctionName": "LambdaLambda",
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "LambdalambdaServiceRole9DA151F3",
+            "LambdaLambdaServiceRole7D5BE2AE",
             "Arn",
           ],
         },
@@ -23,7 +24,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "LambdalambdaServiceRole9DA151F3": Object {
+    "LambdaLambdaServiceRole7D5BE2AE": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -61,18 +62,19 @@ Object {
 exports[`Lambda should create one Lambda with specified timeout 1`] = `
 Object {
   "Resources": Object {
-    "Lambdalambda04A7AE7A": Object {
+    "LambdaLambda764FC51E": Object {
       "DependsOn": Array [
-        "LambdalambdaServiceRole9DA151F3",
+        "LambdaLambdaServiceRole7D5BE2AE",
       ],
       "Properties": Object {
         "Code": Object {
           "ZipFile": "lambda",
         },
+        "FunctionName": "LambdaLambda",
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "LambdalambdaServiceRole9DA151F3",
+            "LambdaLambdaServiceRole7D5BE2AE",
             "Arn",
           ],
         },
@@ -81,7 +83,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "LambdalambdaServiceRole9DA151F3": Object {
+    "LambdaLambdaServiceRole7D5BE2AE": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -119,18 +121,19 @@ Object {
 exports[`Lambda should create one default Lambda 1`] = `
 Object {
   "Resources": Object {
-    "Lambdalambda04A7AE7A": Object {
+    "LambdaLambda764FC51E": Object {
       "DependsOn": Array [
-        "LambdalambdaServiceRole9DA151F3",
+        "LambdaLambdaServiceRole7D5BE2AE",
       ],
       "Properties": Object {
         "Code": Object {
           "ZipFile": "lambda",
         },
+        "FunctionName": "LambdaLambda",
         "Handler": "handler",
         "Role": Object {
           "Fn::GetAtt": Array [
-            "LambdalambdaServiceRole9DA151F3",
+            "LambdaLambdaServiceRole7D5BE2AE",
             "Arn",
           ],
         },
@@ -139,7 +142,7 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "LambdalambdaServiceRole9DA151F3": Object {
+    "LambdaLambdaServiceRole7D5BE2AE": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
