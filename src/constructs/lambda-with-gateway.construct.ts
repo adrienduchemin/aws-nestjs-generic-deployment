@@ -10,7 +10,7 @@ export class LambdaWithGateway extends Lambda {
 
     // the id should concatenate the same way lambda id does
     // new LambdaRestApi(this, 'gateway', {
-    new LambdaRestApi(this, `${scope.node.id}-gateway`, {
+    new LambdaRestApi(this, `${id}Gateway`, {
       handler: this
     })
   }

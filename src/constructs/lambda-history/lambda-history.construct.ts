@@ -22,7 +22,8 @@ export class LambdaHistory extends Lambda {
 
     const { queue } = props
     this.addEventSource(new SqsEventSource(queue))
-    const table = new Table(this, `${id}-table`, {
+    
+    const table = new Table(this, `${id}Table`, {
       partitionKey: { name: 'id', type: AttributeType.STRING }
     })
     table.grantReadWriteData(this)

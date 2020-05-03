@@ -14,6 +14,6 @@ export class ApiLambdaStack extends Stack {
     delete props.lambdaProps
     super(scope, id, props)
 
-    this.lambda = new LambdaWithGateway(this, id, lambdaProps)
+    this.lambda = new LambdaWithGateway(this, '', lambdaProps)
   }
 }

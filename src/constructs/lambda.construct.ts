@@ -15,7 +15,7 @@ export class Lambda extends Function {
       throw new Error(LAMBDA_TIMEOUT_ERROR)
     }
     
-    super(scope, `${id}-lambda`, {
+    super(scope, `${id}Lambda`, {
       runtime,
       code,
       handler,

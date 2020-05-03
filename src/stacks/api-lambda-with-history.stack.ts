@@ -7,12 +7,12 @@ export class ApiLambdaWithHistoryStack extends ApiLambdaStack {
   constructor(scope: App, id: string, props: ApiLambdaStackProps) {
     super(scope, id, props)
 
-    const queue = new Queue(this, `${id}-history-queue`, { fifo: true })
+    const queue = new Queue(this, 'HistoryQueue', { fifo: true })
     queue.grantSendMessages(this.lambda)
 
     this.lambda.addEnvironment('QUEUE_URL', queue.queueUrl)
 
     // not yet with rds
-    new LambdaHistory(this, `${id}-history`, { queue })
+    new LambdaHistory(this, 'History', { queue })
   }
 }
