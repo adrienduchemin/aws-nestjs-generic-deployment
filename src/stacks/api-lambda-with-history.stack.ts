@@ -10,7 +10,7 @@ export class ApiLambdaWithHistoryQueueStack extends ApiLambdaStack {
 
     super(scope, id, props)
     
-    const queue = new HistoryQueue(this, id, { historyQueueProps })
+    const queue = new HistoryQueue(this, `${id}`, { historyQueueProps })
     queue.grantSendMessages(this.lambda)
     this.lambda.addEnvironment('QUEUE_URL', queue.queueUrl)
   }

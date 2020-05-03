@@ -12,9 +12,9 @@ export interface ApiProps {
 export class Api extends LambdaRestApi {
   constructor(scope: Construct, id: string, props: ApiProps) {
     const { lambda, apiProps } = props
-    const { restApiName = `${id}-rest-api` } = apiProps ? apiProps : {}
+    const { restApiName = `${id}RestApi` } = apiProps ? apiProps : {}
 
-    super(scope, id, {
+    super(scope, `${id}RestApi`, {
       handler: lambda,
       ...apiProps,
       restApiName

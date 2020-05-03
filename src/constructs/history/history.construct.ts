@@ -18,7 +18,7 @@ export class History extends Construct {
 
     super(scope, id)
 
-    const lambda = new Lambda(this, id, {
+    const lambda = new Lambda(this, `${id}History`, {
       lambdaProps: {
         code: Code.fromAsset(join(__dirname, './lambda')),
         handler: 'index.handler',
@@ -27,7 +27,7 @@ export class History extends Construct {
     
     lambda.addEventSource(new SqsEventSource(queue))
     
-    const table = new Table(this, id, {
+    const table = new Table(this, `${id}HistoryTable`, {
       ...tableProps,
       tableName,
       partitionKey

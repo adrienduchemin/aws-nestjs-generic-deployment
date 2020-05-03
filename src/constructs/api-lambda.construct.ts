@@ -14,9 +14,9 @@ export class ApiLambda extends Lambda {
     const { lambdaProps, apiProps } = props
     const { timeout = API_LAMBDA_TIMEOUT } = lambdaProps
 
-    super(scope, id, { lambdaProps : { ...lambdaProps, timeout } })
+    super(scope, `${id}`, { lambdaProps : { ...lambdaProps, timeout } })
 
-    new Api(this, id, {
+    new Api(this, `${id}`, {
       apiProps,
       lambda: this
     })

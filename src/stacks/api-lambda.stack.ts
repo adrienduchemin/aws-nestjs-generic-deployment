@@ -13,6 +13,6 @@ export class ApiLambdaStack extends Stack {
 
     super(scope, id, stackProps)
     
-    this.lambda = new ApiLambda(this, id, { lambdaProps, apiProps })
+    this.lambda = new ApiLambda(this, `${id}`, { lambdaProps, apiProps })
   }
 }

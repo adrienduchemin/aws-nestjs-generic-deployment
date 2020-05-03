@@ -16,13 +16,13 @@ export const LAMBDA_TIMEOUT_ERROR = 'lambda cannot exceed 60 seconds even if the
 export class Lambda extends Function {
   constructor(scope: Construct, id: string, props: ILambdaProps) {
     const { lambdaProps } = props
-    const { runtime = Runtime.NODEJS_12_X, timeout = LAMBDA_TIMEOUT, functionName = `${id}-lambda` } = lambdaProps
+    const { runtime = Runtime.NODEJS_12_X, timeout = LAMBDA_TIMEOUT, functionName = `${id}Lambda` } = lambdaProps
 
     if (timeout.toSeconds() > 60) {
       throw new Error(LAMBDA_TIMEOUT_ERROR)
     }
     
-    super(scope, id, {
+    super(scope, `${id}Lambda`, {
       ...lambdaProps,
       runtime,
       timeout,

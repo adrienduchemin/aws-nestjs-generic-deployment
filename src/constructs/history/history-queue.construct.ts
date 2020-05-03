@@ -11,15 +11,15 @@ export interface IHistoryQueueProps {
 export class HistoryQueue extends Queue {
   constructor(scope: Construct, id: string, props: IHistoryQueueProps) {
     const { historyQueueProps } = props
-    const { queueName = `${id}-history-queue-fifo` } = historyQueueProps ? historyQueueProps : {}
+    const { queueName = `${id}HistoryQueue.fifo` } = historyQueueProps ? historyQueueProps : {}
 
-    super(scope, id, { 
+    super(scope, `${id}HistoryQueue.fifo`, { 
       fifo: true,
       ...historyQueueProps,
       queueName
     })
 
-    new History(this, id, {
+    new History(this, `${id}`, {
       queue: this
     })
   }
