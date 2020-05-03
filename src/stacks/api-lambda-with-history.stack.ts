@@ -2,10 +2,10 @@ import { App } from '@aws-cdk/core'
 import { HistoryQueue, IHistoryQueueProps } from '../constructs/history/history-queue.construct'
 import { ApiLambdaStack, IApiLambdaStackProps } from './api-lambda.stack'
 
-export interface IApiLambdaWithHistoryStackProps extends IApiLambdaStackProps, IHistoryQueueProps {}
+export interface IApiLambdaWithHistoryQueueStackProps extends IApiLambdaStackProps, IHistoryQueueProps {}
 
-export class ApiLambdaWithHistoryStack extends ApiLambdaStack {
-  constructor(scope: App, id: string, props: IApiLambdaWithHistoryStackProps) {
+export class ApiLambdaWithHistoryQueueStack extends ApiLambdaStack {
+  constructor(scope: App, id: string, props: IApiLambdaWithHistoryQueueStackProps) {
     const { historyQueueProps } = props
 
     super(scope, id, props)
