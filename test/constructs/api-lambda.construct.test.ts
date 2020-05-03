@@ -1,25 +1,26 @@
 import { expect as expectCDK, SynthUtils, countResources, haveResource } from '@aws-cdk/assert'
 import { Code } from '@aws-cdk/aws-lambda'
 import { Stack } from '@aws-cdk/core'
-import { LambdaWithGateway } from '../../src/constructs/lambda-with-gateway.construct'
-import { LambdaProps } from '../../src/constructs/lambda.construct'
+import { ApiLambda, API_LAMBDA_TIMEOUT, ApiLambdaProps } from '../../src/constructs/api-lambda.construct'
 
-describe('LambdaWithGateway', () => {
+describe('ApiLambda', () => {
   let stack: Stack
 
   beforeAll(()=> {
-    const props: LambdaProps = {
-      code: Code.fromInline('lambda'),
-      handler: 'handler',
+    const props: ApiLambdaProps = {
+      lambdaProps: {
+        code: Code.fromInline('lambda'),
+        handler: 'handler',
+      }
     }
     stack = new Stack()
-    new LambdaWithGateway(stack, 'LambdaWithGateway', props)
+    new ApiLambda(stack, 'ApiLambda', props)
   })
 
   it('should create one Lambda', () => {
     expectCDK(stack).to(countResources("AWS::Lambda::Function", 1))
     expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
-      Timeout: 60,
+      Timeout: API_LAMBDA_TIMEOUT,
     }))
   })
 

@@ -1,19 +1,15 @@
 import { App, Stack, StackProps } from '@aws-cdk/core'
-import { LambdaWithGateway } from '../constructs/lambda-with-gateway.construct'
-import { LambdaProps } from '../constructs/lambda.construct'
+import { ApiLambda, ApiLambdaProps } from '../constructs/api-lambda.construct'
 
-export interface ApiLambdaStackProps extends StackProps {
-  lambdaProps: LambdaProps;
-}
+export interface ApiLambdaStackProps extends StackProps, ApiLambdaProps {}
 
 export class ApiLambdaStack extends Stack {
-  lambda: LambdaWithGateway
+  lambda: ApiLambda
 
   constructor(scope: App, id: string, props: ApiLambdaStackProps) {
-    const { lambdaProps } = props
-    delete props.lambdaProps
     super(scope, id, props)
-
-    this.lambda = new LambdaWithGateway(this, '', lambdaProps)
+    
+    const { lambdaProps, lambdaRestApiProps } = props
+    this.lambda = new ApiLambda(this, id, { lambdaProps, lambdaRestApiProps })
   }
 }

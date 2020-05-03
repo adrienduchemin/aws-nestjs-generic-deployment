@@ -1,7 +1,7 @@
 import { expect as expectCDK, haveResource, SynthUtils, countResources } from '@aws-cdk/assert'
 import { Code, Runtime } from '@aws-cdk/aws-lambda'
 import { Stack, Duration } from '@aws-cdk/core'
-import { Lambda, LambdaProps, LAMBDA_TIMEOUT_ERROR } from '../../src/constructs/lambda.construct'
+import { Lambda, LambdaProps, LAMBDA_TIMEOUT_ERROR, LAMBDA_TIMEOUT, LAMBDA_RUNTIME } from '../../src/constructs/lambda.construct'
 
 describe('Lambda', () => {
   let stack: Stack
@@ -23,8 +23,8 @@ describe('Lambda', () => {
         "ZipFile": "lambda"
       },
       Handler: "handler",
-      Timeout: 30,
-      Runtime: Runtime.NODEJS_12_X.name,
+      Timeout: LAMBDA_TIMEOUT,
+      Runtime: LAMBDA_RUNTIME.name,
     }))
     expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot()
   })
