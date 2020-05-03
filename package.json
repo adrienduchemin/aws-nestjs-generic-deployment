@@ -47,7 +47,7 @@
     "rootDir": "test",
     "testRegex": ".test.ts$",
     "transform": {
-      "^.+\\.ts?$": "ts-jest"
+      "^.+\\.ts$": "ts-jest"
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
