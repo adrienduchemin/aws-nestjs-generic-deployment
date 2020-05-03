@@ -1,26 +1,24 @@
-import { LambdaRestApi, LambdaRestApiProps } from '@aws-cdk/aws-apigateway'
 import { Construct, Duration } from '@aws-cdk/core'
-import { LambdaProps, Lambda } from './lambda.construct'
+import { ILambdaRestApiProps, Api } from './api.construct'
+import { Lambda, IFunctionProps } from './lambda.construct'
 
-export interface ApiLambdaProps {
-  lambdaProps: LambdaProps;
-  lambdaRestApiProps?: Omit<LambdaRestApiProps, 'handler'> ;
+export interface IApiLambdaProps {
+  lambdaProps: IFunctionProps;
+  apiProps?: ILambdaRestApiProps;
 }
 
 export const API_LAMBDA_TIMEOUT = Duration.seconds(60)
 
 export class ApiLambda extends Lambda {
-  constructor(scope: Construct, id: string, props: ApiLambdaProps) {
-    const { lambdaProps, lambdaRestApiProps } = props
+  constructor(scope: Construct, id: string, props: IApiLambdaProps) {
+    const { lambdaProps, apiProps } = props
     const { timeout = API_LAMBDA_TIMEOUT } = lambdaProps
-    
-    super(scope, id, { ...lambdaProps, timeout })
 
-    // the id should concatenate the same way lambda id does
-    // new LambdaRestApi(this, 'gateway', {
-    new LambdaRestApi(this, `${id}Gateway`, {
-      handler: this,
-      ...lambdaRestApiProps
+    super(scope, id, { lambdaProps : { ...lambdaProps, timeout } })
+
+    new Api(this, id, {
+      apiProps,
+      lambda: this
     })
   }
 }

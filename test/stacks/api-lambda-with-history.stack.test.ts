@@ -2,13 +2,13 @@ import { expect as expectCDK, SynthUtils, countResources, haveResource } from '@
 import { Code } from '@aws-cdk/aws-lambda'
 import { App } from '@aws-cdk/core'
 import { ApiLambdaWithHistoryStack } from '../../src/stacks/api-lambda-with-history.stack'
-import { ApiLambdaStackProps } from '../../src/stacks/api-lambda.stack'
+import { IApiLambdaStackProps } from '../../src/stacks/api-lambda.stack'
 
 describe('ApiLambdaWithHistoryStack', () => {
   let stack: ApiLambdaWithHistoryStack
 
   beforeAll(()=> {
-    const props: ApiLambdaStackProps = {
+    const props: IApiLambdaStackProps = {
       lambdaProps: {
         code: Code.fromInline('lambda'),
         handler: 'handler',

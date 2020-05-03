@@ -1,7 +1,7 @@
 import { expect as expectCDK, SynthUtils, countResources, haveResource } from '@aws-cdk/assert'
 import { Queue } from '@aws-cdk/aws-sqs'
 import { Stack } from '@aws-cdk/core'
-import { LambdaHistory, LambdaHistoryProps } from '../../src/constructs/lambda-history/lambda-history.construct'
+import { LambdaHistory, LambdaHistoryProps } from '../../src/constructs/history/history.construct'
 
 describe('LambdaHistory', () => {
   let stack: Stack

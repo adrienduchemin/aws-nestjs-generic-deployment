@@ -1,15 +1,18 @@
 import { App, Stack, StackProps } from '@aws-cdk/core'
-import { ApiLambda, ApiLambdaProps } from '../constructs/api-lambda.construct'
+import { ApiLambda, IApiLambdaProps } from '../constructs/api-lambda.construct'
 
-export interface ApiLambdaStackProps extends StackProps, ApiLambdaProps {}
+export interface IApiLambdaStackProps extends IApiLambdaProps {
+  stackProps?: StackProps;
+}
 
 export class ApiLambdaStack extends Stack {
   lambda: ApiLambda
 
-  constructor(scope: App, id: string, props: ApiLambdaStackProps) {
-    super(scope, id, props)
+  constructor(scope: App, id: string, props: IApiLambdaStackProps) {
+    const { stackProps, lambdaProps, apiProps } = props
+
+    super(scope, id, stackProps)
     
-    const { lambdaProps, lambdaRestApiProps } = props
-    this.lambda = new ApiLambda(this, id, { lambdaProps, lambdaRestApiProps })
+    this.lambda = new ApiLambda(this, id, { lambdaProps, apiProps })
   }
 }
