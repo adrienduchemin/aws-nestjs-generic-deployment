@@ -4,20 +4,19 @@ import { Lambda } from './lambda.construct'
 
 export type ILambdaRestApiProps = Omit<LambdaRestApiProps, 'handler'>
 
-export interface IApiProps {
-  apiProps?: ILambdaRestApiProps
-  lambda: Lambda
+export interface IApiProps extends ILambdaRestApiProps {
+  handler: Lambda
 }
 
 export class Api extends LambdaRestApi {
   constructor(scope: Construct, id: string, props: IApiProps) {
-    const { lambda, apiProps } = props
-    const { restApiName = `${id}RestApi` } = apiProps ? apiProps : {}
+    const { handler } = props
+    const restApiName = `${id}RestApi`
 
-    super(scope, `${id}RestApi`, {
-      handler: lambda,
-      ...apiProps,
-      restApiName
+    super(scope, restApiName, {
+      restApiName,
+      ...props,
+      handler,
     })
   }
 }

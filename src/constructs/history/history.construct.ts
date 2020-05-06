@@ -14,23 +14,21 @@ export interface IHistoryProps {
 export class History extends Construct {
   constructor(scope: Construct, id: string, props: IHistoryProps) {
     const { queue, tableProps } = props
-    const { tableName = `${id}HistoryTable`, partitionKey = { name: 'id', type: AttributeType.STRING } } = tableProps ? tableProps : {}
+    const tableName = `${id}HistoryTable`
 
     super(scope, id)
 
     const lambda = new Lambda(this, `${id}History`, {
-      lambdaProps: {
         code: Code.fromAsset(join(__dirname, './lambda')),
         handler: 'index.handler',
-      }
     })
     
     lambda.addEventSource(new SqsEventSource(queue))
     
-    const table = new Table(this, `${id}HistoryTable`, {
-      ...tableProps,
+    const table = new Table(this, tableName, {
       tableName,
-      partitionKey
+      partitionKey : { name: 'id', type: AttributeType.STRING } ,
+      ...tableProps,
     })
     table.grantReadWriteData(lambda)
 

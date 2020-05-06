@@ -48,9 +48,28 @@ Object {
           ],
         },
         "Runtime": "nodejs12.x",
-        "Timeout": 60,
+        "Timeout": 28,
       },
       "Type": "AWS::Lambda::Function",
+    },
+    "ApiLambdaStackLambdaAllowEventRuleApiLambdaStackApiLambdaStackLambdaApiLambdaStackRule61C0AE32478FEA25": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaStackLambda78623D88",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaStackLambdaApiLambdaStackRuleD2D84EB7",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
     },
     "ApiLambdaStackLambdaApiLambdaStackRestApi53EF09E4": Object {
       "Properties": Object {
@@ -382,6 +401,25 @@ Object {
         },
       },
       "Type": "AWS::ApiGateway::Resource",
+    },
+    "ApiLambdaStackLambdaApiLambdaStackRuleD2D84EB7": Object {
+      "Properties": Object {
+        "ScheduleExpression": "rate(5 minutes)",
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "ApiLambdaStackLambda78623D88",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+            "Input": "{\\"ping\\":true}",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
     },
     "ApiLambdaStackLambdaServiceRole29C5619E": Object {
       "Properties": Object {

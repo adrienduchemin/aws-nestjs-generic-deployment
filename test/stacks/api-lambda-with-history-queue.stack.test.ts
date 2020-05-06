@@ -11,6 +11,9 @@ describe('ApiLambdaWithHistoryStack', () => {
       lambdaProps: {
         code: Code.fromInline('lambda'),
         handler: 'handler',
+      },
+      historyQueueProps: {
+        fifo: true
       }
     })
   })

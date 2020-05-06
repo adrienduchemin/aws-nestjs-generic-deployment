@@ -7,7 +7,9 @@ describe('History', () => {
 
   beforeAll(()=> {
     stack = new Stack()
-    new HistoryQueue(stack, 'HistoryQueue', { })
+    new HistoryQueue(stack, 'HistoryQueue', { historyQueueProps: {
+      fifo: true
+    } })
   })
 
   it('should create one Queue', () => {

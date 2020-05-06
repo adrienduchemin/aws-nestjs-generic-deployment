@@ -11,11 +11,9 @@ describe('Api', () => {
   beforeEach(()=> {
     stack = new Stack()
     props = {
-      lambda : new Lambda(stack, 'Lambda', {
-        lambdaProps: {
+      handler : new Lambda(stack, 'Lambda', {
           code: Code.fromInline('lambda'),
           handler: 'handler',
-        }
       }),
     }
   })

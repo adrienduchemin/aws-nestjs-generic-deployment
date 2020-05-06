@@ -1,15 +1,13 @@
 import { expect as expectCDK, haveResource, SynthUtils, countResources } from '@aws-cdk/assert'
 import { Code, Runtime } from '@aws-cdk/aws-lambda'
 import { Stack, Duration } from '@aws-cdk/core'
-import { Lambda, ILambdaProps, LAMBDA_TIMEOUT_ERROR, LAMBDA_TIMEOUT, LAMBDA_RUNTIME } from '../../src/constructs/lambda.construct'
+import { Lambda, ILambdaProps, LAMBDA_RUNTIME, LAMBDA_MAX_DURATION_IN_SECONDS, LAMBDA_TIMEOUT_ERROR } from '../../src/constructs/lambda.construct'
 
 describe('Lambda', () => {
   let stack: Stack
   const props: ILambdaProps = {
-    lambdaProps: {
       code: Code.fromInline('lambda'),
       handler: 'handler',
-    }
   }
 
   beforeEach(()=> {
@@ -25,7 +23,7 @@ describe('Lambda', () => {
         "ZipFile": "lambda"
       },
       Handler: "handler",
-      Timeout: LAMBDA_TIMEOUT.toSeconds(),
+      Timeout: LAMBDA_MAX_DURATION_IN_SECONDS,
       Runtime: LAMBDA_RUNTIME.name,
     }))
     expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot()
@@ -34,10 +32,7 @@ describe('Lambda', () => {
   it('should create one Lambda with specified timeout', () => {
     const overridenProps: ILambdaProps =  {
       ...props,
-      lambdaProps : {
-        ...props.lambdaProps,
-        timeout: Duration.seconds(15),
-      }
+      timeout: Duration.seconds(15),
     }
     new Lambda(stack, 'Lambda', overridenProps)
     
@@ -50,10 +45,7 @@ describe('Lambda', () => {
   it('should throw if the given timeout is > 60 seconds', () => {
     const overridenProps: ILambdaProps =  {
       ...props,
-      lambdaProps : {
-        ...props.lambdaProps,
-        timeout: Duration.seconds(61),
-      }
+      timeout: Duration.seconds(61),
     }
     
     expect(() => {
@@ -65,10 +57,7 @@ describe('Lambda', () => {
   it('should create one Lambda with specified runtime', () => {
     const overridenProps: ILambdaProps =  {
       ...props,
-      lambdaProps : {
-        ...props.lambdaProps,
-        runtime: Runtime.NODEJS_10_X
-      }
+      runtime: Runtime.NODEJS_10_X
     }
     new Lambda(stack, 'Lambda', overridenProps)
     

@@ -105,7 +105,7 @@ Object {
           ],
         },
         "Runtime": "nodejs12.x",
-        "Timeout": 30,
+        "Timeout": 60,
       },
       "Type": "AWS::Lambda::Function",
     },
@@ -268,9 +268,28 @@ Object {
           ],
         },
         "Runtime": "nodejs12.x",
-        "Timeout": 60,
+        "Timeout": 28,
       },
       "Type": "AWS::Lambda::Function",
+    },
+    "ApiLambdaWithHistoryStackLambdaAllowEventRuleApiLambdaWithHistoryStackApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRuleDC0C7F25A5E3062C": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaWithHistoryStackLambda2CB65481",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::GetAtt": Array [
+            "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRuleAAAE9F02",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
     },
     "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRestApi3348E911": Object {
       "Properties": Object {
@@ -602,6 +621,25 @@ Object {
         },
       },
       "Type": "AWS::Lambda::Permission",
+    },
+    "ApiLambdaWithHistoryStackLambdaApiLambdaWithHistoryStackRuleAAAE9F02": Object {
+      "Properties": Object {
+        "ScheduleExpression": "rate(5 minutes)",
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "ApiLambdaWithHistoryStackLambda2CB65481",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+            "Input": "{\\"ping\\":true}",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
     },
     "ApiLambdaWithHistoryStackLambdaServiceRole20D45CC2": Object {
       "Properties": Object {

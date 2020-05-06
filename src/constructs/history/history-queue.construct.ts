@@ -1,26 +1,26 @@
+import { TableProps } from '@aws-cdk/aws-dynamodb'
 import { Queue, QueueProps } from '@aws-cdk/aws-sqs'
 import { Construct } from '@aws-cdk/core'
 import { History } from './history.construct'
 
-export type IQueueProps = Omit<QueueProps, 'fifo'>
-
 export interface IHistoryQueueProps {
-  historyQueueProps?: IQueueProps
+  historyQueueProps?: QueueProps
+  tableProps?: TableProps
 }
 
 export class HistoryQueue extends Queue {
   constructor(scope: Construct, id: string, props: IHistoryQueueProps) {
-    const { historyQueueProps } = props
-    const { queueName = `${id}HistoryQueue.fifo` } = historyQueueProps ? historyQueueProps : {}
+    const { tableProps, historyQueueProps } = props
+    const queueName = `${id}HistoryQueue${historyQueueProps && historyQueueProps.fifo ? '.fifo' : ''}`
 
-    super(scope, `${id}HistoryQueue.fifo`, { 
-      fifo: true,
+    super(scope, queueName, { 
+      queueName,
       ...historyQueueProps,
-      queueName
     })
 
     new History(this, `${id}`, {
-      queue: this
+      queue: this,
+      tableProps
     })
   }
 }

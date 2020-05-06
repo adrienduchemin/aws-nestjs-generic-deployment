@@ -1,32 +1,30 @@
 import { Function, Runtime, FunctionProps } from '@aws-cdk/aws-lambda'
 import { Duration, Construct } from '@aws-cdk/core'
 
-export interface IFunctionProps extends Omit<FunctionProps, 'runtime'> {
+export interface ILambdaProps extends Omit<FunctionProps, 'runtime'> {
   runtime?: Runtime
 }
 
-export interface ILambdaProps {
-  lambdaProps: IFunctionProps
-}
-
-export const LAMBDA_TIMEOUT = Duration.seconds(30)
+// default runtime for lambda
 export const LAMBDA_RUNTIME = Runtime.NODEJS_12_X
-export const LAMBDA_TIMEOUT_ERROR = 'lambda cannot exceed 60 seconds even if they can for 900 seconds'
+// default timeout for lambda
+export const LAMBDA_MAX_DURATION_IN_SECONDS = 60 // can go up to 900 seconds
+export const LAMBDA_TIMEOUT_ERROR = `lambda cannot exceed ${LAMBDA_MAX_DURATION_IN_SECONDS} seconds`
 
 export class Lambda extends Function {
   constructor(scope: Construct, id: string, props: ILambdaProps) {
-    const { lambdaProps } = props
-    const { runtime = Runtime.NODEJS_12_X, timeout = LAMBDA_TIMEOUT, functionName = `${id}Lambda` } = lambdaProps
+    const { timeout } = props
+    const functionName = `${id}Lambda`
 
-    if (timeout.toSeconds() > 60) {
+    if (timeout && timeout.toSeconds() > LAMBDA_MAX_DURATION_IN_SECONDS) {
       throw new Error(LAMBDA_TIMEOUT_ERROR)
     }
     
-    super(scope, `${id}Lambda`, {
-      ...lambdaProps,
-      runtime,
-      timeout,
-      functionName
+    super(scope, functionName, {
+      runtime: LAMBDA_RUNTIME,
+      functionName,
+      timeout :Duration.seconds(LAMBDA_MAX_DURATION_IN_SECONDS),
+      ...props,
     })
   }
 }
