@@ -268,7 +268,7 @@ Object {
           ],
         },
         "Runtime": "nodejs12.x",
-        "Timeout": 28,
+        "Timeout": 30,
       },
       "Type": "AWS::Lambda::Function",
     },
