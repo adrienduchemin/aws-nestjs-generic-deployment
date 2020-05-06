@@ -10,8 +10,7 @@ export interface IApiLambdaProps {
 }
 
 // default timeout for lambda
-// todo : put the best option for timeout between 28/29/30 sec
-export const LAMBDA_MAX_DURATION_IN_SECONDS = 30 // can go up to 29 seconds (API Gateway limit)
+export const LAMBDA_MAX_DURATION_IN_SECONDS = 29 // API Gateway timeout
 export const LAMBDA_TIMEOUT_ERROR = `lambda api cannot exceed ${LAMBDA_MAX_DURATION_IN_SECONDS} seconds`
 
 export class ApiLambda extends Lambda {
