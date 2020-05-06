@@ -23,7 +23,7 @@ export class Lambda extends Function {
     super(scope, functionName, {
       runtime: LAMBDA_RUNTIME,
       functionName,
-      timeout :Duration.seconds(LAMBDA_MAX_DURATION_IN_SECONDS),
+      timeout: Duration.seconds(LAMBDA_MAX_DURATION_IN_SECONDS),
       ...props,
     })
   }
