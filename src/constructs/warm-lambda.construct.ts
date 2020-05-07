@@ -1,5 +1,6 @@
 import { Rule, RuleTargetInput, Schedule, RuleProps } from '@aws-cdk/aws-events'
 import { LambdaFunction, LambdaFunctionProps } from '@aws-cdk/aws-events-targets'
+import { ServicePrincipal } from '@aws-cdk/aws-iam'
 import { Construct, Duration } from '@aws-cdk/core'
 import { Lambda } from './lambda.construct'
 
@@ -20,6 +21,7 @@ export const LAMBDA_MAX_WARMUP_MAX_ERROR = `number of warm lambda cannot exceed 
 export class WarmLambda extends Construct {
   constructor(scope: Construct, id: string, props: IWarmLambdaProps) {
     const { lambda, lambdaNumberWarmup, ruleProps, eventProps } = props
+    const ruleName = `${id}Rule`
 
     super(scope, `${id}`)
 
@@ -30,8 +32,9 @@ export class WarmLambda extends Construct {
 
       for (let i = 0; i < lambdaNumberWarmup; i++) {
         // warmup lambda[i] every 5 minutes
-        const rule = new Rule(this, 'Rule', {
+        const rule = new Rule(this, ruleName, {
           schedule : Schedule.rate(Duration.seconds(SCHEDULE_RATE_IN_SECONDS)),
+          ruleName,
           ...ruleProps,
         })
     
@@ -39,6 +42,8 @@ export class WarmLambda extends Construct {
           event: RuleTargetInput.fromObject({ ping: true }),
           ...eventProps
         }))
+
+        lambda.addPermission(`${id}Permission`, { principal : new ServicePrincipal("events.amazonaws.com").grantPrincipal, sourceArn: rule.ruleArn })
       }
     }
   }
