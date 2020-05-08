@@ -21,7 +21,6 @@ export const LAMBDA_MAX_WARMUP_MAX_ERROR = `number of warm lambda cannot exceed 
 export class WarmLambda extends Construct {
   constructor(scope: Construct, id: string, props: IWarmLambdaProps) {
     const { lambda, lambdaNumberWarmup, ruleProps, eventProps } = props
-    const ruleName = `${id}Rule`
 
     super(scope, `${id}`)
 
@@ -31,7 +30,9 @@ export class WarmLambda extends Construct {
       }
 
       for (let i = 0; i < lambdaNumberWarmup; i++) {
-        // warmup lambda[i] every 5 minutes
+        // fix rule name when more than 1 event 
+        const ruleName = `${id}Rule${i}`
+
         const rule = new Rule(this, ruleName, {
           schedule : Schedule.rate(Duration.seconds(SCHEDULE_RATE_IN_SECONDS)),
           ruleName,
